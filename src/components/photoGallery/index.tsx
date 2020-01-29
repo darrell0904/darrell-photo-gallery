@@ -12,6 +12,7 @@ interface recordImg {
   width?: string;
   height?: string;
   is_onlocal?: string;
+  [propName: string]: any;
 }
 
 interface Props {
