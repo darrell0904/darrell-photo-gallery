@@ -48,14 +48,14 @@ import 'darrell-photo-gallery/lib/main.min.css';
 
 ```javascript
 <PhotoGallery
-	visible={visible}
-	imgData={ImgData}
-	currentImg = {9}
-	hideModal={
-		() => {
-			setVisible(false);
-		}
-	}
+ visible={visible}
+ imgData={ImgData}
+ currentImg = {9}
+ hideModal={
+  () => {
+    setVisible(false);
+  }
+ }
 />
 ```
 
