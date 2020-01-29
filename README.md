@@ -17,7 +17,6 @@
 ## 支持功能
 
 - [x] 放大图片
-- [ ] 
 - [x] 缩小图片
 - [x] 原尺寸大小显示
 - [x] 适应屏幕
@@ -53,9 +52,9 @@ import 'darrell-photo-gallery/lib/main.min.css';
 	imgData={ImgData}
 	currentImg = {9}
 	hideModal={
-  	() => {
-    	setVisible(false);
-  	}
+		() => {
+			setVisible(false);
+		}
 	}
 />
 ```
