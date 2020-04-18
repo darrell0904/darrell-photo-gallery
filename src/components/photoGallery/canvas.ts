@@ -289,26 +289,31 @@ class ImgToCanvas {
       return;
     }
 
-    this.LongImgTop = this.LongImgTop - e.deltaY;
-    this.LongImgLeft = this.LongImgLeft - e.deltaX;
+    if (this.cImgHeight > cHeight) {
+      this.LongImgTop = this.LongImgTop - e.deltaY;
 
-    if (e.deltaY > 0) { // 向下
-      if ((-this.LongImgTop) > this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight) { // 这个 50 为 缓冲
-        this.LongImgTop = -(this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight);
-      }
-    } else {
-      if (this.LongImgTop > LONG_IMG_TOP) {
-        this.LongImgTop = LONG_IMG_TOP;
+      if (e.deltaY > 0) { // 向下
+        if ((-this.LongImgTop) > this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight) { // 这个 50 为 缓冲
+          this.LongImgTop = -(this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight);
+        }
+      } else {
+        if (this.LongImgTop > LONG_IMG_TOP) {
+          this.LongImgTop = LONG_IMG_TOP;
+        }
       }
     }
 
-    if (e.deltaX > 0) {
-      if ((-this.LongImgLeft) > this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth) {
-        this.LongImgLeft = -(this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth);
-      }
-    } else {
-      if (this.LongImgLeft > LONG_IMG_Left) {
-        this.LongImgLeft = LONG_IMG_Left;
+    if (this.cImgWidth > cWidth) {
+      this.LongImgLeft = this.LongImgLeft - e.deltaX;
+
+      if (e.deltaX > 0) {
+        if ((-this.LongImgLeft) > this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth) {
+          this.LongImgLeft = -(this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth);
+        }
+      } else {
+        if (this.LongImgLeft > LONG_IMG_Left) {
+          this.LongImgLeft = LONG_IMG_Left;
+        }
       }
     }
 
@@ -341,10 +346,9 @@ class ImgToCanvas {
       const curX = this.curPos.x;
       const curY = this.curPos.y;
 
-      this.LongImgTop = this.LongImgTop + (clientY - this.curPos.y);
-      this.LongImgLeft = this.LongImgLeft + (clientX - this.curPos.x);
-
       if (this.cImgHeight > this.cHeight) {
+        this.LongImgTop = this.LongImgTop + (clientY - this.curPos.y);
+
         if (clientY - curY > 0) {
           if (this.LongImgTop >= LONG_IMG_TOP) {
             this.LongImgTop = LONG_IMG_TOP;
@@ -357,6 +361,8 @@ class ImgToCanvas {
       }
 
       if (this.cImgWidth > this.cWidth) {
+        this.LongImgLeft = this.LongImgLeft + (clientX - this.curPos.x);
+
         if (clientX - curX > 0) {
           if (this.LongImgLeft >= LONG_IMG_Left) {
             this.LongImgLeft = LONG_IMG_Left;
@@ -374,6 +380,8 @@ class ImgToCanvas {
       this.curPos.y = clientY;
 
       this.imgTop = this.LongImgTop;
+      this.imgLeft = this.LongImgLeft;
+
 
       if (this.canUseCanvas) {
         this.drawImg();

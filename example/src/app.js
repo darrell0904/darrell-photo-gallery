@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import styles from "./index.less";
 import PhotoGallery from '../../src/index'; // 引入组件
 // import PhotoGallery from 'darrell-photo-gallery';
-import 'darrell-photo-gallery/lib/main.min.css';
+// import 'darrell-photo-gallery/lib/main.min.css';
 
 const ImgData = [
   {
