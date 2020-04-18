@@ -1,27 +1,27 @@
 import React, { useState }  from 'react';
 import { render } from 'react-dom'
 import styles from "./index.less";
-// import PhotoGallery from '../../src/index'; // 引入组件
-import PhotoGallery from 'darrell-photo-gallery';
+import PhotoGallery from '../../src/index'; // 引入组件
+// import PhotoGallery from 'darrell-photo-gallery';
 import 'darrell-photo-gallery/lib/main.min.css';
 
 const ImgData = [
   {
-    "url": "http://public-alicliimg.clewm.net/dwagimg/863b4684432e71adff1d76902c0a0b93.png",
+    "url": "https://images-cdn.shimo.im/ZrtwqVbbrlU8VC4Y/50_.png__original",
     "size": "278452",
     "width": "1410",
     "height": "1410",
     "is_onlocal": "0"
   },
   {
-    "url": "http://public-alicliimg.clewm.net/dwagimg/89a20d0b0be4c82e6d92d15e9bdd9cee.png",
+    "url": "https://uploader.shimo.im/f/fxr0tojKkcIHxEFX.png!original",
     "size": "290957",
     "width": "1410",
     "height": "1410",
     "is_onlocal": "0"
   },
   {
-    "url": "http://public-alicliimg.clewm.net/dwagimg/ce4ad3e15cfc28d7484a42683c90473b.png",
+    "url": "http://public-alicliimg.clewm.net/dwagimg/863b4684432e71adff1d76902c0a0b93.png",
     "size": "286927",
     "width": "1410",
     "height": "1410",
@@ -63,7 +63,7 @@ const ImgData = [
     "is_onlocal": "0"
   },
   {
-    "url": "http://public-alicliimg.clewm.net/dwagimg/4e3d0663e0c9f275f77f91a15350c3dd.png",
+    "url": "https://uploader.shimo.im/f/ZLYlotu9LwraXaEu.png!original",
     "size": "1032445",
     "width": "1410",
     "height": "2508",

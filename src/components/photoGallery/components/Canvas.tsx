@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import ImgToCanvas from '../canvas';
 import classNames from 'classnames';
 import styles from './canvas.less';
@@ -106,7 +106,7 @@ const Canvas = (props: Props): JSX.Element => {
     });
   }, [imgUrl])
 
-  const WheelHandler = (e: any) => {
+  const WheelHandler = useCallback((e: any) => {
 
     if (!canvasInstance.current) return;
     e.stopPropagation();
@@ -116,9 +116,9 @@ const Canvas = (props: Props): JSX.Element => {
     const { WheelUpdate } = props;
 
     WheelUpdate(e, instance);
-  }
+  }, [])
 
-  const MouseDown = (e: any) => {
+  const MouseDown = useCallback((e: any) => {
     if (!canvasInstance.current) return;
     e.stopPropagation();
 
@@ -127,9 +127,9 @@ const Canvas = (props: Props): JSX.Element => {
     const { MouseDown } = props;
 
     MouseDown(e, instance);
-  }
+  }, [])
 
-  const MouseMove = (e: any) => {
+  const MouseMove = useCallback((e: any) => {
     if (!canvasInstance.current) return;
     e.stopPropagation();
 
@@ -138,20 +138,20 @@ const Canvas = (props: Props): JSX.Element => {
     const { MouseMove } = props;
 
     MouseMove(e, instance);
-  }
+  }, [])
 
-  const MouseUp = (e: any) => {
+  const MouseUp = useCallback((e: any) => {
     e.stopPropagation();
 
     const { MouseUp } = props;
 
     MouseUp(e);
-  }
+  }, [])
 
-  const CanvasClick = () => {
+  const CanvasClick = useCallback(() => {
     const { Click } = props;
     Click();
-  }
+  }, []);
 
   /**
    * canvas 需要在渲染过程中就需要去加载，在 useEffect 中会出现闪顿

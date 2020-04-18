@@ -6,7 +6,7 @@
 
 ## 介绍
 
-这是一个基于 **react hoos** 开发的 **仿石墨的图片** 放大预览插件。
+这是一个基于 **React Hoos** 开发的 **仿石墨的图片** 放大预览插件。
 
 在社区找了很久之后，没有找到相关的轮子，于是自己撸了一个。
 
@@ -63,7 +63,7 @@ import 'darrell-photo-gallery/lib/main.min.css';
 
 目前支持四个参数：
 
-* `visible`：`number`，预览插件的显示隐藏
+* `visible`：`boolean`，预览插件的显示隐藏
 
 * `imgData`：`object`，具体属性如下
 

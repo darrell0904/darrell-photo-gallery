@@ -149,6 +149,7 @@ class ImgToCanvas {
 
     if (this.image) {
       this.drawImg('init');
+      return;
     }
 
     this.loadimg(this.drawImg.bind(this, 'init'));
@@ -289,11 +290,11 @@ class ImgToCanvas {
     }
 
     this.LongImgTop = this.LongImgTop - e.deltaY;
-
+    this.LongImgLeft = this.LongImgLeft - e.deltaX;
 
     if (e.deltaY > 0) { // 向下
-      if ((-this.LongImgTop) > this.cImgHeight + LONG_IMG_TOP - window.innerHeight + 50) { // 这个 50 为 缓冲
-        this.LongImgTop = -(this.cImgHeight + LONG_IMG_TOP - window.innerHeight + 50);
+      if ((-this.LongImgTop) > this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight) { // 这个 50 为 缓冲
+        this.LongImgTop = -(this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight);
       }
     } else {
       if (this.LongImgTop > LONG_IMG_TOP) {
@@ -301,7 +302,18 @@ class ImgToCanvas {
       }
     }
 
+    if (e.deltaX > 0) {
+      if ((-this.LongImgLeft) > this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth) {
+        this.LongImgLeft = -(this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth);
+      }
+    } else {
+      if (this.LongImgLeft > LONG_IMG_Left) {
+        this.LongImgLeft = LONG_IMG_Left;
+      }
+    }
+
     this.imgTop = this.LongImgTop;
+    this.imgLeft = this.LongImgLeft;
 
     if (this.canUseCanvas) {
       this.drawImg();
@@ -338,8 +350,8 @@ class ImgToCanvas {
             this.LongImgTop = LONG_IMG_TOP;
           }
         } else {
-          if ((-this.LongImgTop) > this.cImgHeight + LONG_IMG_TOP - window.innerHeight + 50) {
-            this.LongImgTop = -(this.cImgHeight + LONG_IMG_TOP - window.innerHeight + 50);
+          if ((-this.LongImgTop) > this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight) {
+            this.LongImgTop = -(this.cImgHeight + LONG_IMG_TOP - window.innerHeight + this.footerHeight);
           }
         }
       }
@@ -350,8 +362,8 @@ class ImgToCanvas {
             this.LongImgLeft = LONG_IMG_Left;
           }
         } else {
-          if ((-this.LongImgLeft) > this.cImgWidth + LONG_IMG_Left - window.innerWidth + 120) {
-            this.LongImgLeft = -(this.cImgWidth + LONG_IMG_Left - window.innerWidth + 120);
+          if ((-this.LongImgLeft) > this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth) {
+            this.LongImgLeft = -(this.cImgWidth + LONG_IMG_Left - window.innerWidth + this.sidebarWidth);
           }
         }
 

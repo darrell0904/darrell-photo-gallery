@@ -27,7 +27,7 @@ interface NaturalImg {
   naturalHeight: number;
 }
 
-const LONG_IMG_TOP: number = 10; // 长图距离顶部和底部的距离
+// const LONG_IMG_TOP: number = 10; // 长图距离顶部和底部的距离
 // const LONG_IMG_Left: number = 10; // 长图距离顶部和底部的距离
 
 
@@ -69,36 +69,56 @@ export const getBoundingClientRect = (options: RectWidth): BoundingClientRect =>
   if (imageRadio <= 1) {
     imgTop = wrapperHeight * 0.05;
 
-    if (imageRadio > 0.55) {
-      ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
-      ImgWidth = ImgHeight * naturalWidth / naturalHeight;
+    // if (imageRadio > 0.55) {
+    //   ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
+    //   ImgWidth = ImgHeight * naturalWidth / naturalHeight;
 
-      if (wrapperRadio <= imageRadio) {
-        ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
-        ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
+    //   if (wrapperRadio <= imageRadio) {
+    //     ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
+    //     ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
   
-        imgTop = (wrapperHeight - ImgHeight) / 2
-      }
+    //     imgTop = (wrapperHeight - ImgHeight) / 2
+    //   }
 
-    } else {
-      if (wrapperWidth >= naturalWidth) {
-        ImgHeight = naturalHeight;
-        ImgWidth = naturalWidth;
+    // } else {
+    //   if (wrapperWidth >= naturalWidth) {
+    //     ImgHeight = naturalHeight;
+    //     ImgWidth = naturalWidth;
 
-        imgTop = LONG_IMG_TOP;
-      } else {
-        ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
-        ImgWidth = ImgHeight * naturalWidth / naturalHeight;
+    //     imgTop = LONG_IMG_TOP;
+    //   } else {
+    //     ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
+    //     ImgWidth = ImgHeight * naturalWidth / naturalHeight;
 
-        if (ImgWidth !== naturalWidth) {
-          if (wrapperRadio <= imageRadio) {
-            ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
-            ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
-          }
-        }
+    //     if (ImgWidth !== naturalWidth) {
+    //       if (wrapperRadio <= imageRadio) {
+    //         ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
+    //         ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
+    //       }
+    //     }
 
-        imgTop = (wrapperHeight - ImgHeight) / 2;
-      }
+    //     imgTop = (wrapperHeight - ImgHeight) / 2;
+    //   }
+    // }
+
+    ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
+    ImgWidth = ImgHeight * naturalWidth / naturalHeight;
+
+    if (wrapperRadio <= imageRadio) {
+      ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
+      ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
+
+      imgTop = (wrapperHeight - ImgHeight) / 2
+    }
+
+    // 如果图片实际宽度小于 cabnvas 的宽度
+    // 图片的宽度就是原图，高度就是等比例
+    // 图片宽高比 小于 55 %，需要展示全部高度图片，即图片可以滚动
+
+    if (wrapperWidth >= naturalWidth && imageRadio <= 0.55) {
+      ImgWidth = naturalWidth;
+      ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
+      imgTop = (wrapperHeight - ImgHeight) / 2;
     }
 
     imgLeft = newWinWidth - ImgWidth / 2;

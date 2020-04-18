@@ -80,7 +80,7 @@ const photoGallery = (props: Props): JSX.Element => {
     instance.WheelUpdate(e);
   }
 
-  const MouseDown = (e: any, instance: any) => {
+  const MouseDown = useCallback((e: any, instance: any) => {
     moveFlag = true;
     const { clientX, clientY } = e;
 
@@ -89,13 +89,13 @@ const photoGallery = (props: Props): JSX.Element => {
 
     StartPos.x = clientX;
     StartPos.y = clientY;
-  }
+  }, []);
 
-  const MouseMove = (e: any, instance: any) => {
+  const MouseMove = useCallback((e: any, instance: any) => {
     instance.MoveCanvas(moveFlag, e);
-  }
+  }, [])
 
-  const MouseUp = (e: any) => {
+  const MouseUp = useCallback((e: any) => {
     moveFlag = false;
 
     if (e.clientX === StartPos.x && e.clientY === StartPos.y) {
@@ -103,15 +103,58 @@ const photoGallery = (props: Props): JSX.Element => {
     } else {
       DoClick = false;
     }
-  }
+  }, [])
 
-  const Click = () => {
+  const Click = useCallback(() => {
     if (!DoClick) return;
     const { hideModal } = props;
     if (hideModal) {
       hideModal();
     }
-  }
+  }, []);
+
+  // canvas
+  // 设置 适应屏幕尺寸
+  const _setFixScreenSize = useCallback((curSize) => {
+    if (curSize < 0) {
+      curSize = 0
+    }
+
+    if (curSize > 12) {
+      curSize = 12;
+    }
+    setFixScreenSize(curSize);
+  }, []);
+
+  // 设置当前图片尺寸
+  const _setCurSize = useCallback((curSize) => {
+    if (curSize < 0) {
+      curSize = 0
+    }
+
+    if (curSize > 12) {
+      curSize = 12;
+    }
+    setCurSize(curSize);
+  }, []);
+
+  // 图片 loading
+  const _setImgLoading = useCallback((bool) => {
+    setImgLoading(bool);
+  }, []);
+
+  // sidebar
+  // 设置图片 url
+  const _setImgUrl = useCallback((imgUrl) => {
+    setImgUrl(imgUrl);
+  }, [])
+
+  // 设置当前页面索引
+  const _setCurrentImgIndex = useCallback((index) => {
+    setCurrentImgIndex(index);
+  }, [])
+
+
 
   let wrapperDom = null;
 
@@ -128,35 +171,9 @@ const photoGallery = (props: Props): JSX.Element => {
         curSize={curSize}
         imgUrl={imgUrl}
         imgLoading={imgLoading}
-        setFixScreenSize={
-          (curSize) => {
-            if (curSize < 0) {
-              curSize = 0
-            }
-
-            if (curSize > 12) {
-              curSize = 12;
-            }
-            setFixScreenSize(curSize);
-          }
-        }
-        setCurSize={
-          (curSize) => {
-            if (curSize < 0) {
-              curSize = 0
-            }
-
-            if (curSize > 12) {
-              curSize = 12;
-            }
-            setCurSize(curSize);
-          }
-        }
-        setImgLoading={
-          (bool) => {
-            setImgLoading(bool);
-          }
-        }
+        setFixScreenSize={_setFixScreenSize}
+        setCurSize={_setCurSize}
+        setImgLoading={_setImgLoading}
       />
     )
   } else {
@@ -203,40 +220,16 @@ const photoGallery = (props: Props): JSX.Element => {
         </div>
         <Sidebar
           imgData={imgData}
-          setImgUrl={
-            (imgUrl) => {
-              setImgUrl(imgUrl);
-            }
-          }
-          setCurrentImgIndex={
-            (index) => {
-              setCurrentImgIndex(index);
-            }
-          }
-          setImgLoading={
-            (bool) => {
-              setImgLoading(bool);
-            }
-          }
+          setImgUrl={_setImgUrl}
+          setCurrentImgIndex={_setCurrentImgIndex}
+          setImgLoading={_setImgLoading}
         />
         <Footer
           curSize={curSize}
           fixScreenSize={fixScreenSize}
           imgsLens={imgData.length}
           currentImgIndex={currentImgIndex}
-          setCurSize={
-            (curSize) => {
-              if (curSize < 0) {
-                curSize = 0
-              }
-
-              if (curSize > 12) {
-                curSize = 12;
-              }
-
-              setCurSize(curSize);
-            }
-          }
+          setCurSize={_setCurSize}
         />
       </div>
     </div>
