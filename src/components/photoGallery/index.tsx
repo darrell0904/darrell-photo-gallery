@@ -220,6 +220,7 @@ const photoGallery = (props: Props): JSX.Element => {
         </div>
         <Sidebar
           imgData={imgData}
+          curImgUrl={imgUrl}
           setImgUrl={_setImgUrl}
           setCurrentImgIndex={_setCurrentImgIndex}
           setImgLoading={_setImgLoading}

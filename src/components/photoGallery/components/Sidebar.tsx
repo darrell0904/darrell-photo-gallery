@@ -11,14 +11,14 @@ interface recordImg {
 
 interface Props {
   imgData: recordImg[];
+  curImgUrl?: string;
   setCurrentImgIndex(index: number): void;
   setImgLoading(bool: boolean): void;
   setImgUrl(imgUrl: string): void;
 }
 
 const Sidebar = (props: Props): JSX.Element => {
-
-  const imgData = props.imgData;
+  const { curImgUrl, imgData } = props;
 
   return (
     <div className={styles.sidebar}>
@@ -33,6 +33,7 @@ const Sidebar = (props: Props): JSX.Element => {
                 className={styles.imgSpan}
                 onClick={
                   () => {
+                    if (curImgUrl === _.url) return;
                     props.setImgUrl(_.url);
                     props.setCurrentImgIndex(index + 1);
                     props.setImgLoading(true);

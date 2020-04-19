@@ -55,8 +55,6 @@ const Canvas = (props: Props): JSX.Element => {
   }, [canvasRef]);
 
   useEffect((): void => {
-    const canvasNode = canvasRef.current;
-
     if (canvasInstance.current) {
       const canvasClass = canvasInstance.current;
 
@@ -64,19 +62,8 @@ const Canvas = (props: Props): JSX.Element => {
       canvasClass.winHeight = winHeight;
 
       canvasClass.canvasInit();
-    } else {
-      canvasInstance.current = new ImgToCanvas(canvasNode, {
-        imgUrl,
-        winWidth,
-        winHeight,
-        canUseCanvas,
-        loadingComplete: function() {
-          props.setImgLoading(false);
-        },
-      });
     }
-
-  }, [canvasRef, winWidth, winHeight]);
+  }, [winWidth, winHeight]);
 
   useEffect((): void => {
     if (!canvasInstance.current) return;
@@ -92,7 +79,6 @@ const Canvas = (props: Props): JSX.Element => {
   useEffect((): void => {
     if (canvasInstance.current) canvasInstance.current = null;
     const canvasNode = canvasRef.current;
-    
     canvasInstance.current = new ImgToCanvas(canvasNode, {
       imgUrl,
       winWidth,
@@ -104,7 +90,7 @@ const Canvas = (props: Props): JSX.Element => {
         props.setFixScreenSize(instance.fixScreenSize);
       },
     });
-  }, [imgUrl])
+  }, [imgUrl]);
 
   const WheelHandler = useCallback((e: any) => {
 

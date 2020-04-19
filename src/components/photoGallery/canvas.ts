@@ -201,8 +201,8 @@ class ImgToCanvas {
     })
 
     if (this.options.loadingComplete && !this.isDoCallback) {
-      this.options.loadingComplete(this);
       this.isDoCallback = true;
+      this.options.loadingComplete(this);
     }
   }
 
