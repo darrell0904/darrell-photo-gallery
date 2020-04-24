@@ -69,38 +69,6 @@ export const getBoundingClientRect = (options: RectWidth): BoundingClientRect =>
   if (imageRadio <= 1) {
     imgTop = wrapperHeight * 0.05;
 
-    // if (imageRadio > 0.55) {
-    //   ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
-    //   ImgWidth = ImgHeight * naturalWidth / naturalHeight;
-
-    //   if (wrapperRadio <= imageRadio) {
-    //     ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
-    //     ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
-  
-    //     imgTop = (wrapperHeight - ImgHeight) / 2
-    //   }
-
-    // } else {
-    //   if (wrapperWidth >= naturalWidth) {
-    //     ImgHeight = naturalHeight;
-    //     ImgWidth = naturalWidth;
-
-    //     imgTop = LONG_IMG_TOP;
-    //   } else {
-    //     ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
-    //     ImgWidth = ImgHeight * naturalWidth / naturalHeight;
-
-    //     if (ImgWidth !== naturalWidth) {
-    //       if (wrapperRadio <= imageRadio) {
-    //         ImgWidth = wrapperWidth - wrapperWidth * 0.05 * 2;
-    //         ImgHeight =  ImgWidth * naturalHeight / naturalWidth;
-    //       }
-    //     }
-
-    //     imgTop = (wrapperHeight - ImgHeight) / 2;
-    //   }
-    // }
-
     ImgHeight = wrapperHeight - wrapperHeight * 0.05 * 2;
     ImgWidth = ImgHeight * naturalWidth / naturalHeight;
 
