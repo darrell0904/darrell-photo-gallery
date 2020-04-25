@@ -81,3 +81,11 @@ import 'darrell-photo-gallery/lib/main.min.css';
 
 * `hideModal`：`hideModal?(): void;`，是一个函数，关闭图片预览弹窗
 
+
+
+&nbsp;
+
+## 原理介绍
+
+原理介绍大家可以移步笔者的掘金文章：[使用 React Hooks 实现仿石墨的图片预览插件（巨详细）](https://juejin.im/post/5e9bf299f265da47ee3f6c31)
+
